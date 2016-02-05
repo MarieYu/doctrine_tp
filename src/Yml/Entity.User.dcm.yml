@@ -1,0 +1,24 @@
+# Entity\User: #namespace de la classe
+#   type: entity # @Entity
+#   table: user # @Table(name="user")
+
+# #l'id n'est pas considéré comme un field
+#   id:
+#     id: #attribut pour notre classe
+#       column: id
+#       type: integer
+#       generator:
+#         strategy: AUTO # @GeneratedValue
+#   fields:
+#     username:
+#       column: username
+#       type: string
+#       length: 200
+#     password:
+#       column: password
+#       type: string
+#       length: 50
+#     description:
+#       column: description 
+#       type: text
+

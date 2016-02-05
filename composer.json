@@ -1,0 +1,17 @@
+{
+    "name": "imie/tp1",
+    "description": "decouverte doctrine jour 1",
+    "authors": [
+        {
+            "name": "Marie Morlet",
+            "email": "marie.morlet@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": { "": "src/"}
+    },
+    "require": {
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "^3.0"
+    }
+}
