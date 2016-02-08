@@ -1,7 +1,7 @@
 <?php
-//trait_userSignIn.php
+//trait_userSignUp.php
 
-require('../bootstrap.php');
+require('before.php');
 
 use Entity\User;
 
@@ -21,6 +21,9 @@ if(isset($_POST['username'], $_POST['firstname'], $_POST['lastname'], $_POST['bi
 
 	$entityManager->persist($user);
 	$entityManager->flush($user);
+
 }
+
+header('Location: post.php');
 
 ?>

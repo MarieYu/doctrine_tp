@@ -2,7 +2,7 @@
 //User.php
 
 namespace Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /** 
 	* @Entity (repositoryClass="Repository\PostRepository")
 	* @Table(name="post")
@@ -26,11 +26,26 @@ class Post{
 	/** @Column (name="message", type="text") */
 	private $message;
 
+	/** 
+	* @ManyToOne(targetEntity="Entity\User") 
+	* @JoinColumn(name="user_id", referencedColumnName="id")
+	*/
+	private $author;
 
-	public function __construct($subject, $message){
+	/**
+	*	@OneToMany(targetEntity="Entity\Comment", mappedBy="post")
+	*/
+	private $comments;
+
+
+
+
+	public function __construct($subject, $message, User $user) {
 		$this->subject = $subject;
 		$this->message = $message;
 		$this->date = new \Datetime();
+		$this->author = $user;
+		$this->comments = new ArrayCollection(); //arraycollection (classe Doctrine) pour gérer des objets
 	}
 
 
@@ -59,6 +74,16 @@ class Post{
 		$this->message = $message;
 		return $this;
 	}
+
+	public function getAuthor(){
+		return $this->author->getUsername();
+	}
+
+	public function getComments(){
+		return $this->comments; 
+	}
+
+
 }
 
 

@@ -1,9 +1,10 @@
 <?php
-require_once('../bootstrap.php');
-
+//session_start();
+require_once('before.php');
+	//on a accès à la variable $user de partout grâce qu fichier before.php dans lequel on récupère l'ob
+//var_dump($user);
 
 //filtre en GET pour récupérer les Posts ayant un sujet donné:
-//var_dump($_GET);
 if(isset($_GET['search'])){
 	$titre = 'recherchés';
 	$sub=htmlentities($_GET['search']);
@@ -23,6 +24,10 @@ else{
 if(isset($_GET['id'])){
 	$modifPost = $entityManager->getRepository('Entity\Post')->find($_GET['id']);
 }
+//affichage conditionnel selon connexion utilisateur ou non:
+if($user){
+	$name = $user->getFirstname();
+}
 
 ?>
 
@@ -38,8 +43,16 @@ if(isset($_GET['id'])){
 <body>
 	<div>
 		<h1>POSTS</h1>
-		<a href="userSignUp.php">S'inscrire pour poster des messages</a><br/>
-		<a href="userConnection.php">Connexion</a>
+		<?php if ($user): ?>
+			<div>
+				Bonjour <?= $name ?> !
+				<a href="logout.php">Déconnexion</a>			
+			<?php else:?>
+				<a href="userSignUp.php">S'inscrire pour poster des messages</a><br/>
+				<a href="userConnection.php">Connexion</a>
+			</div>
+		<?php endif; ?>
+		<hr/>
 		<form action="trait_post.php" method="POST" >
 			<?php if (isset($modifPost)) : ?>
 				<h2>Modifier ce post</h2>
@@ -70,6 +83,7 @@ if(isset($_GET['id'])){
 					<thead>
 						<tr>
 							<th>Date</th>
+							<!-- <th>Auteur</th> -->
 							<th>Sujet</th>
 							<th>Message</th>
 							<th>Actions</th>
@@ -80,7 +94,8 @@ if(isset($_GET['id'])){
 
 						<tr>
 							<td><?= $elem->getDate() ?></td>
-							<td><?= $elem->getSubject() ?></td>
+							<td><?= $elem->getId() ?></td>
+							<!-- <td><?= $elem->getAuthor() ?></td> -->
 							<td><?= $elem->getMessage() ?></td>
 							<td>
 								<a href="comment.php?id=<?= $elem->getId() ?>"><i class="fa fa-eye"></i></a>

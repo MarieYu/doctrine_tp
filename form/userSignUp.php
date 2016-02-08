@@ -8,7 +8,7 @@
 <body>
 	<fieldset>
 		<legend>Formulaire d'inscription nouvel utilisateur</legend>
-		<form action="trait_userSignIn.php" method="POST" >
+		<form action="trait_userSignUp.php" method="POST" >
 			<label> Pseudo :  
 				<input type="text" name="username" value="">
 			</label>
