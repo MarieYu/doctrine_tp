@@ -10,13 +10,13 @@ if(isset($_GET['id'])){
 	//var_dump($post);
 
 	//afficher les comments liés à un post:
-	//$comments = $entityManager->getRepository('Entity\Comment')->RelatedComments($_GET['id']);
 	$comments = $entityManager->getRepository('Entity\Comment')->findBy(array('post' => $post), array('date' => 'ASC'));
 	// var_dump($comments);
 	//$comments = $entityManager->getRepository('Entity\Comment')->findBy(array(), array('date' => 'ASC')); //pour TP2
 	//var_dump($comments);
 	//$comments = $post->getComments();
 }
+
 ?>
 
 <!DOCTYPE html>

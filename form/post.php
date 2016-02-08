@@ -94,7 +94,7 @@ if($user){
 
 						<tr>
 							<td><?= $elem->getDate() ?></td>
-							<td><?= $elem->getId() ?></td>
+							<td><?= $elem->getSubject() ?></td>
 							<!-- <td><?= $elem->getAuthor() ?></td> -->
 							<td><?= $elem->getMessage() ?></td>
 							<td>
